@@ -3,3 +3,5 @@ languageCode = "ja-JP"
 title = "備忘録"
 subtitle = "いろいろ忘れないためのブログ"
 theme = "hugo-octopress"
+
+disableAliases = true

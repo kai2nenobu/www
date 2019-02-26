@@ -1,9 +1,10 @@
 os: xenial
 language: shell  # MEANINGLESS!
 before_install:
-  - sudo add-apt-repository ppa:kelleyk/emacs
+  - sudo add-apt-repository -y ppa:kelleyk/emacs
   - sudo apt-get update
   - sudo apt-get install -y emacs26
 script:
+  - env
   - emacs --batch -l hugo-export.el
   - git diff

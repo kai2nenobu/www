@@ -1,4 +1,4 @@
-os: xenial
+dist: xenial
 language: shell  # MEANINGLESS!
 before_install:
   - sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 762E3157

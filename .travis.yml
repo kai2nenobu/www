@@ -6,6 +6,6 @@ before_install:
   - sudo apt-get update
   - sudo apt-get install -y emacs26
 script:
-  - env
+  - env | sort
   - emacs --batch -l hugo-export.el
   - git diff

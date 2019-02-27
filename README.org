@@ -1,0 +1,8 @@
+
+Webページです。
+
+* 構成
+
+[[https://orgmode.org/][Org mode]] で文章を書き、[[https://ox-hugo.scripter.co/][ox-hugo]] でMarkdownに変換し、[[https://gohugo.io/][Hugo]]で 静的サイトを生成する。
+
+ひとまず文章は [[file:content-org/content.org][content-org/content.org]] の1ファイルにすべて詰め込むことにする。

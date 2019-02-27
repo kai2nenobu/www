@@ -5,13 +5,13 @@ services:
 before_install:
   - docker pull "$EMACS_IMAGE"
 script:
-  - env | sort
+  - env | grep -i travis | sort
   - docker run --rm -v "$PWD:/mnt" -w /mnt "$EMACS_IMAGE" emacs --batch -l hugo-export.el
   - git diff
 after_success:
   - git add content
   - git -c user.name="Travis CI" -c user.email="travis@travis-ci.org" commit -m "[ci skip] Update documents generated from ${TRAVIS_COMMIT}"
-  - git push "https://${GITHUB_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git" "HEAD:${TRAVIS_BRANCH}"
+  - git push "https://${GITHUB_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git" "HEAD:${TRAVIS_BRANCH}" >/dev/null 2>&1
 env:
   global:
     - EMACS_IMAGE=silex/emacs:26.1-alpine

@@ -5,6 +5,10 @@
 
 ;;; Code:
 
+;; バックアップファイルを作らない
+(setq make-backup-files nil)
+(setq auto-save-default nil)
+
 ;;; 文字コーディング設定
 (set-language-environment "Japanese")
 (prefer-coding-system 'utf-8)

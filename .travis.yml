@@ -10,10 +10,9 @@ script:
   - emacs --batch -l hugo-export.el
   - git diff
 after_success:
-  - |
-    git add content
-    git -c user.name="Travis CI" -c user.email="travis@travis-ci.org" commit -m "[ci skip] Update documents generated from ${TRAVIS_COMMIT}"
-    git push "https://${GITHUB_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git" "$TRAVIS_BRANCH"
+  - git add content
+  - git -c user.name="Travis CI" -c user.email="travis@travis-ci.org" commit -m "[ci skip] Update documents generated from ${TRAVIS_COMMIT}"
+  - git push "https://${GITHUB_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git" "$TRAVIS_BRANCH"
 env:
   global:
     # GITHUB_TOKEN

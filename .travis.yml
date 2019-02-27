@@ -2,6 +2,11 @@ dist: xenial
 language: shell  # MEANINGLESS!
 services:
   - docker
+env:
+  global:
+    - EMACS_IMAGE=silex/emacs:26.1-alpine
+    # GITHUB_TOKEN
+    - secure: "mOlmuFdv+hlKIQ/4Q4C80PJsrtXWDDNXZwLCOtMaYDurTkcqQTRF3tsHZXI+fX/se7dbwrpUIKtJuraAMxVAE71YDlRghBq2HS6xZzXld42iTCW8XA58i1GeC1rpukDjp3o3acJ9zIB7Xlf5y6V/KPQ7soNAKpHyrXbfDnLkv5b0B6Y7i9wTdaDs+LvXEURB/MqmRf60CLxXKII5efXq3vB+cC4aoedbmmfBGJzPjGKn0GtjCBDMBmo53ZEwDYP/2uEPYuxf7srRmr10/nSv5dRIjZquL5UhMSvFKbXz3Mo0pG5a0ZGEx8Hte/4aXqeKEQVN1rEWFp+jsDScNhC0lKhVpb5RyfB3Ahn89ZJdRl1XjayRaVZL6bN1WGvejOwjOwN6GWwKvjjvWxURP2LHYBBPUir5M/voj32PyrrdXPqqMvOk8lEHQetb6Ca8EPCeOFnseywbJcc8UTDVr6ghIWXBfWN7CHbnCNQ2X8OU/9MDTEQlHh1NaaNKdgv/LF/I1hpq8gnrbMBw1ue0ccuABB70e+eRqYFhleuYa0r5yxmNdaRr1OMeu1v8AzyuZ/mg6JvOjDQSWxkYWmq8uRFldCP8v9OsL65ebuEQpQGyw8WLF+cdg9m//4esKKgwVX8s4YZ/hLriODbNUcoVzu7CMDm3cmT0Sl4YhJifOpD8MRc="
 install:
   - docker pull "$EMACS_IMAGE"
 before_script:
@@ -13,8 +18,3 @@ after_success:
   - git add content
   - git -c user.name="Travis CI" -c user.email="travis@travis-ci.org" commit -m "[ci skip] Update documents generated from ${TRAVIS_COMMIT}"
   - git push "https://${GITHUB_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git" "HEAD:${TRAVIS_BRANCH}" >/dev/null 2>&1
-env:
-  global:
-    - EMACS_IMAGE=silex/emacs:26.1-alpine
-    # GITHUB_TOKEN
-    - secure: "mOlmuFdv+hlKIQ/4Q4C80PJsrtXWDDNXZwLCOtMaYDurTkcqQTRF3tsHZXI+fX/se7dbwrpUIKtJuraAMxVAE71YDlRghBq2HS6xZzXld42iTCW8XA58i1GeC1rpukDjp3o3acJ9zIB7Xlf5y6V/KPQ7soNAKpHyrXbfDnLkv5b0B6Y7i9wTdaDs+LvXEURB/MqmRf60CLxXKII5efXq3vB+cC4aoedbmmfBGJzPjGKn0GtjCBDMBmo53ZEwDYP/2uEPYuxf7srRmr10/nSv5dRIjZquL5UhMSvFKbXz3Mo0pG5a0ZGEx8Hte/4aXqeKEQVN1rEWFp+jsDScNhC0lKhVpb5RyfB3Ahn89ZJdRl1XjayRaVZL6bN1WGvejOwjOwN6GWwKvjjvWxURP2LHYBBPUir5M/voj32PyrrdXPqqMvOk8lEHQetb6Ca8EPCeOFnseywbJcc8UTDVr6ghIWXBfWN7CHbnCNQ2X8OU/9MDTEQlHh1NaaNKdgv/LF/I1hpq8gnrbMBw1ue0ccuABB70e+eRqYFhleuYa0r5yxmNdaRr1OMeu1v8AzyuZ/mg6JvOjDQSWxkYWmq8uRFldCP8v9OsL65ebuEQpQGyw8WLF+cdg9m//4esKKgwVX8s4YZ/hLriODbNUcoVzu7CMDm3cmT0Sl4YhJifOpD8MRc="

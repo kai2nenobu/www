@@ -5,6 +5,36 @@ theme = "hugo-octopress"
 
 disableAliases = true
 
+# Number of blog posts in each pagination page
+paginate = 6
+
+[permalinks]
+  # Configures post URLs
+  post = "/blog/:year-:month-:day-:title/"
+
 [params]
   # This text appears in site header under website title
   subtitle = "いろいろ忘れないためのブログ"
+
+  # Text of the "Continue Reading" label. Supports markdown and inline HTML.
+  # For example, &rarr; == right arrow.
+  continueReadingText = "続きを読む &rarr;"
+
+  # Switch to true to enable RSS icon link
+  rss = true
+
+  # Social network icons
+  github = "https://github.com/kai2nenobu/"
+  twitter = "https://twitter.com/kai2nenobu/"
+
+  sidebarRecentLimit = 3
+
+[[menu.main]]
+  Name = "Blog"
+  URL = "/"
+  weight = -10
+
+[[menu.main]]
+  Name = "Archives"
+  URL = "/blog/"
+  weight = -5

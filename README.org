@@ -1,4 +1,4 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/d7816b4f-a312-4410-ac63-8e00c3073c05/deploy-status)](https://app.netlify.com/sites/clever-murdock-3ab329/deploys)
+[[https://app.netlify.com/sites/clever-murdock-3ab329/deploys][https://api.netlify.com/api/v1/badges/d7816b4f-a312-4410-ac63-8e00c3073c05/deploy-status]]
 
 Webページです。
 

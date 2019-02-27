@@ -2,13 +2,14 @@ dist: xenial
 language: shell  # MEANINGLESS!
 services:
   - docker
-before_install:
+install:
   - docker pull "$EMACS_IMAGE"
-script:
+before_script:
   - env | grep -i travis | sort
+script:
   - docker run --rm -v "$PWD:/mnt" -w /mnt "$EMACS_IMAGE" emacs --batch -l hugo-export.el
-  - git diff
 after_success:
+  - git diff
   - git add content
   - git -c user.name="Travis CI" -c user.email="travis@travis-ci.org" commit -m "[ci skip] Update documents generated from ${TRAVIS_COMMIT}"
   - git push "https://${GITHUB_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git" "HEAD:${TRAVIS_BRANCH}" >/dev/null 2>&1

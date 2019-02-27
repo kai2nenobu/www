@@ -3,7 +3,7 @@
 
 * blog
 :PROPERTIES:
-:EXPORT_HUGO_SECTION: blog
+:EXPORT_HUGO_SECTION: post
 :END:
 ** キーボード配置を変更する。変態的に。Ubuntu 編          :Ubuntu:mayu:Emacs:
 :PROPERTIES:

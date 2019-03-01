@@ -5,13 +5,14 @@
 :PROPERTIES:
 :EXPORT_HUGO_SECTION: post
 :END:
-** 低価格静音サーバー PRIMEGRY TX100 S1
+** 注文していたサーバー PRIMEGRY TX100 S1 が届いた
 :PROPERTIES:
 :EXPORT_FILE_NAME: 2011-09-10-primergy-tx100-s1
 :EXPORT_DATE: 2011-09-10
 :EXPORT_HUGO_LASTMOD:
 :END:
 
+*** 低価格静音サーバー PRIMEGRY TX100 S1
 前々から自宅サーバを作りたかったのだが、注文していた FUJITSU の [[http://primeserver.fujitsu.com/primergy/products/lineup/tx100s1/][PRIMEGRY
 TX100 S1]]（以下TX100）が届いた。TX100 は富士通の静音省電力タワー型のサーバー。
 最新のパソコンと比べるとスペックは高くないが、そんなに負荷の高い処理をさせるつ

@@ -10,7 +10,7 @@ draft = false
 
 Windows ではキーボード配置を変更するのに，のどかというアプリケーションを使いましたが，Ubuntu では窓使いの憂鬱を Linux に移植した mayu を使用することにします．
 
-<!-- more -->
+<!--more-->
 
 
 ## mayu {#mayu}

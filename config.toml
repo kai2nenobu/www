@@ -10,7 +10,7 @@ paginate = 6
 
 [permalinks]
   # Configures post URLs
-  post = "/blog/:year-:month-:day-:title/"
+  post = "/blog/:filename/"
 
 [params]
   # This text appears in site header under website title

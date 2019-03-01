@@ -1,5 +1,4 @@
 #+HUGO_BASE_DIR: ../
-#+HUGO_SECTION: blog
 
 * blog
 :PROPERTIES:

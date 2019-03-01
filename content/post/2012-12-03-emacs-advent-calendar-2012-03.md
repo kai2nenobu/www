@@ -1,7 +1,8 @@
 +++
-title = "Emacs で自動的にキーバインドをポップアップする guide-key :Emacs:guide-key:"
+title = "Emacs で自動的にキーバインドをポップアップする guide-key"
 author = ["Tsunenobu Kai"]
 date = 2012-12-03
+tags = ["Emacs", "guide-key"]
 draft = false
 +++
 

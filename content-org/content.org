@@ -5,6 +5,78 @@
 :PROPERTIES:
 :EXPORT_HUGO_SECTION: post
 :END:
+** 低価格静音サーバー PRIMEGRY TX100 S1
+:PROPERTIES:
+:EXPORT_FILE_NAME: 2011-09-10-primergy-tx100-s1
+:EXPORT_DATE: 2011-09-10
+:EXPORT_HUGO_LASTMOD:
+:END:
+
+前々から自宅サーバを作りたかったのだが、注文していた FUJITSU の [[http://primeserver.fujitsu.com/primergy/products/lineup/tx100s1/][PRIMEGRY
+TX100 S1]]（以下TX100）が届いた。TX100 は富士通の静音省電力タワー型のサーバー。
+最新のパソコンと比べるとスペックは高くないが、そんなに負荷の高い処理をさせるつ
+もりはないので、安いの重視で選んでみた。主なスペックは以下のとおり。
+
+{{{more}}}
+
+- CPU: Intel Pentium E5400 2.7GHz
+- メモリ: DDR2 800 UDIMM 1GB（最大8GBまで）
+- HDD: 160GB（ベイは4つ）
+詳細は [[http://primeserver.fujitsu.com/primergy/products/lineup/tx100s1/tx100s1_catalog.pdf][カタログ]] をみるといいでしょう。
+
+届いた TX100 がこちら。
+
+#+ATTR_HTML: :width 640
+[[file:images/server-photo1.jpg]]
+
+思ったよりも箱がでかい。中身を取り出してみるとこちら。
+
+#+ATTR_HTML: :width 320
+[[file:images/server-photo2.jpg]] [[file:images/server-photo3.jpg]]
+
+サーバー自体は、タワー型とはいえ、ミドルサイズなのでそこまで邪魔にはならなさそ
+う。キーボード、マウスも付いている。なんと、保証書などを入れておくクリアファイ
+ルまで付いている行き届きよう。国産っぽいですね。
+
+RAID1構成にするつもりなので、2TBのハードディスクを2つ買っておいた。Western
+Digital の [[http://www.amazon.co.jp/gp/product/B005030N36/ref=oss_product][WD20EARX]] です。大容量と安さだけで選びました。
+
+#+ATTR_HTML: :width 320
+[[file:images/server-photo4.jpg]] [[file:images/server-photo5.jpg]]
+
+サーバーの右側には取っ手がついており、ここを外して中身をいじります。
+
+#+ATTR_HTML: :width 320
+[[file:images/server-photo6.jpg]] [[file:images/server-photo7.jpg]]
+
+蓋を開けると、パーツがネジ1つのみで固定されていて、ネジは工具なしで手で外すこ
+とができます。ネジを外して中を見てみると、配線の取り回しなどはかなり考えられて
+おり、工具いらずでハードディスクの入れ替えなどができます。
+
+WD のハードディスク2つをセットして、電源をつけると無事立ち上がり BIOS が起動
+しました。
+
+#+ATTR_HTML: :width 640
+[[file:images/server-photo8.jpg]]
+
+静音というだけあって、動作音は全然しない。扇風機（弱）のほうがよっぽどうるさい
+です。省電力も期待したいところですが、ワットメーターとかがないので確認しようが
+ない。
+
+結局購入したのは
+- サーバー: 12,800円
+- ハードディスク: 5,580円×2
+で、総額23,960円という格安でサーバーが用意できてしまいました。あとはOS のイン
+ストールをするだけです。Debian squeeze を使う予定。頑張ってサーバーの構築をし
+ていきたいと思います。
+*** サーバ構築やらの参考ページ
+- [[http://kacho.blog.eonet.jp/blog/2010/06/fujitsu-primerg.html][kacho blog: Fujitsu PRIMERGY TX100 S1 でホームサーバーを作ってみる]]
+- [[http://blogs.dion.ne.jp/109nissi/archives/10340115.html][とくみつ録:ホームサーバー導入記（１）～１万円台で購入できる静音PCサーバ
+  「 PRIMERGY TX100 S1」でホームサーバーを作ってみました]]
+- [[http://weekly.ascii.jp/sp/wsr2f/index.html][Windows Server 2008 R2 Foundation 密着連載]]
+- [[http://jouhoujuice.com/blog/2011/07/07/fujitsu-primergy-tx100-s1pgt1016ba-review/][Fujitsu Primergy TX100 S1(PGT1016BA)レビュー | 情報ジュース 情充]]
+
+
 ** キーボード配置を変更する。変態的に。Ubuntu 編          :Ubuntu:mayu:Emacs:
 :PROPERTIES:
 :EXPORT_FILE_NAME: 2011-04-17-keyboard-config-ubuntu

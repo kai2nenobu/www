@@ -5,7 +5,7 @@
 :PROPERTIES:
 :EXPORT_HUGO_SECTION: post
 :END:
-** 注文していたサーバー PRIMEGRY TX100 S1 が届いた
+** 注文していたサーバー PRIMEGRY TX100 S1 が届いた                   :Server:
 :PROPERTIES:
 :EXPORT_FILE_NAME: 2011-09-10-primergy-tx100-s1
 :EXPORT_DATE: 2011-09-10

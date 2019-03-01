@@ -1,4 +1,4 @@
-baseURL = "https://clever-murdock-3ab329.netlify.com/"
+baseURL = "https://www-dev.kaichan.info/"
 languageCode = "ja-JP"
 title = "備忘録"
 theme = "hugo-octopress"

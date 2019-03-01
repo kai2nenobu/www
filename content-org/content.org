@@ -27,12 +27,12 @@ TX100 S1]]（以下TX100）が届いた。TX100 は富士通の静音省電力�
 届いた TX100 がこちら。
 
 #+ATTR_HTML: :width 640
-[[file:images/server-photo1.jpg]]
+[[file:/images/server-photo1.jpg]]
 
 思ったよりも箱がでかい。中身を取り出してみるとこちら。
 
 #+ATTR_HTML: :width 320
-[[file:images/server-photo2.jpg]] [[file:images/server-photo3.jpg]]
+[[file:/images/server-photo2.jpg]] [[file:/images/server-photo3.jpg]]
 
 サーバー自体は、タワー型とはいえ、ミドルサイズなのでそこまで邪魔にはならなさそ
 う。キーボード、マウスも付いている。なんと、保証書などを入れておくクリアファイ
@@ -42,12 +42,12 @@ RAID1構成にするつもりなので、2TBのハードディスクを2つ買�
 Digital の [[http://www.amazon.co.jp/gp/product/B005030N36/ref=oss_product][WD20EARX]] です。大容量と安さだけで選びました。
 
 #+ATTR_HTML: :width 320
-[[file:images/server-photo4.jpg]] [[file:images/server-photo5.jpg]]
+[[file:/images/server-photo4.jpg]] [[file:/images/server-photo5.jpg]]
 
 サーバーの右側には取っ手がついており、ここを外して中身をいじります。
 
 #+ATTR_HTML: :width 320
-[[file:images/server-photo6.jpg]] [[file:images/server-photo7.jpg]]
+[[file:/images/server-photo6.jpg]] [[file:/images/server-photo7.jpg]]
 
 蓋を開けると、パーツがネジ1つのみで固定されていて、ネジは工具なしで手で外すこ
 とができます。ネジを外して中を見てみると、配線の取り回しなどはかなり考えられて
@@ -57,7 +57,7 @@ WD のハードディスク2つをセットして、電源をつけると無事�
 しました。
 
 #+ATTR_HTML: :width 640
-[[file:images/server-photo8.jpg]]
+[[file:/images/server-photo8.jpg]]
 
 静音というだけあって、動作音は全然しない。扇風機（弱）のほうがよっぽどうるさい
 です。省電力も期待したいところですが、ワットメーターとかがないので確認しようが

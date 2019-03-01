@@ -5,7 +5,7 @@
 :PROPERTIES:
 :EXPORT_HUGO_SECTION: post
 :END:
-** Emacs で自動的にキーバインドをポップアップする guide-key :Emacs:guide-key:
+** Emacs で自動的にキーバインドをポップアップする guide-key :Emacs:guide_key:
 :PROPERTIES:
 :EXPORT_FILE_NAME: 2012-12-03-emacs-advent-calendar-2012-03
 :EXPORT_DATE: 2012-12-03

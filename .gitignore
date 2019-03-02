@@ -1,4 +1,5 @@
 public/
+www_deploy_key_by_travis
 
 # Emacs
 *.elc

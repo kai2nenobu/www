@@ -259,11 +259,11 @@ WordPress3.4 で twitter の埋込みに対応したらしい。独立した行�
 いらしい。
 
 ```text
-https://twitter.com/kbkbkbkb1/status/217381492052082689
+https://twitter.com/kai2nenobu/status/217381492052082689
 ```
 
 出力は <br />
-<https://twitter.com/kbkbkbkb1/status/217381492052082689> <br />
+<https://twitter.com/kai2nenobu/status/217381492052082689> <br />
 どうも org-mode の方が URL をリンクに変換してしまうので、うまくいかない模様。
 
 他の書き方もあるのでやってみる。この書き方だとオプションで幅や高さを決めること
@@ -272,7 +272,7 @@ HTML ブロックで囲むのがよさそう。記号は一部大文字になっ
 
 ```text
 ＃+BEGIN_HTML
-［embed］https://twitter.com/kbkbkbkb1/status/217381492052082689［/embed］
+［embed］https://twitter.com/kai2nenobu/status/217381492052082689［/embed］
 ＃+END_HTML
 ```
 
@@ -281,6 +281,6 @@ HTML ブロックで囲むのがよさそう。記号は一部大文字になっ
 <div class="HTML">
   <div></div>
 
-[embed]<https://twitter.com/kbkbkbkb1/status/217381492052082689>[/embed]
+[embed]<https://twitter.com/kai2nenobu/status/217381492052082689>[/embed]
 
 </div>

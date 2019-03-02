@@ -163,5 +163,5 @@ MELPAに登録してあるので、 `M-x package-install guide-key` でインス
 ## まとめ {#まとめ}
 
 guide-keyの新機能を紹介しました。もし意見などありましたら
-twitter([@kbkbkbkb1](https://twitter.com/kbkbkbkb1))やgithub([guide-key](https://github.com/kbkbkbkb1/guide-key))な
+twitter([@kai2nenobu](https://twitter.com/kai2nenobu))やgithub([guide-key](https://github.com/kai2nenobu/guide-key))な
 どにお願いします。

@@ -69,7 +69,7 @@ list-packages` を実行してパッケージをリストアップし、 `i` で
 
 {{< figure src="/images/guide-key-package-install.png" alt="packageでguide-key.elをインストールする図" title="guide-key.elのインストール" width="640" >}}
 
-package.el がない人は [m2ym/popwin-el](https://github.com/m2ym/popwin-el) と [kbkbkbkb1/guide-key](https://github.com/kbkbkbkb1/guide-key) から popwin.elと
+package.el がない人は [m2ym/popwin-el](https://github.com/m2ym/popwin-el) と [kai2nenobu/guide-key](https://github.com/kbkbkbkb1/guide-key) から popwin.elと
 guide-key.el を直接ダウンロードしてきて、適当に `load-path` が通っているところ
 に保存してください。
 

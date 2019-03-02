@@ -806,11 +806,11 @@ public class Main {
 次は Web 上の画像をインライン表示してみる。
 #+BEGIN_EXAMPLE
 #+ATTR_HTML: :alt Emacs の起動画面 :title ヌーヌー :width 400
-[[http://www.gnu.org/software/emacs/tour/images/splash.png]]
+[[https://www.gnu.org/software/emacs/tour/images/splash.png]]
 #+END_EXAMPLE
 出力は \\
 #+ATTR_HTML: :alt Emacs の起動画面 :title ヌーヌー :width 400
-[[http://www.gnu.org/software/emacs/tour/images/splash.png]]
+[[https://www.gnu.org/software/emacs/tour/images/splash.png]]
 
 リンク文字列のほうに画像の URL を書けば、画像をインライン表示させつつ画像をク
 リックして他の URL に飛ぶこともできる。
@@ -1406,7 +1406,7 @@ percol を使いましょう！
 Mobile Cube の見た目はこんな感じです。
 
 #+ATTR_HTML: :alt Mobile Cube の外観図 :title Mobile Cube :width 640
-[[http://nwcs.co.jp/product/mobilecube/index.html][http://nwcs.co.jp/product/mobilecube/img/name.png]]
+[[https://nwcs.co.jp/product/mobilecube/index.html][https://nwcs.co.jp/product/mobilecube/img/name.png]]
 - 重さ89g
 - 連続通信時間10時間
 - 同時接続数8台
@@ -1434,7 +1434,7 @@ Mobile Cube の見た目はこんな感じです。
 した。
 
 #+ATTR_HTML: :alt URoad-Home の外観図 :title URoad-Home :width 640
-[[http://www.shinseicorp.com/wimax/uroad-home/gallery.shtml][http://www.shinseicorp.com/wimax/uroad-home/img/gallery_photo02.jpg]]
+[[http://www.shinseicorp.com/wimax/uroad-home/gallery.shtml][https://news.mynavi.jp/article/20111212-uroad_home/images/001.jpg]]
 
 URoad-Home ははじめから自宅内で利用するように想定された非携帯用の WiMAX 端末で、
 有線 LAN ポートが2つあるのが今回の用途にぴったりです。この端末の特徴は

@@ -51,42 +51,46 @@ css で行番号の部分はコピペできないようにしたけど、もっ�
 **** コードブロック
 ハイライト付きコードブロック（C++ の場合）
 #+BEGIN_EXAMPLE
-#+BEGIN_SRC c++
-#include <iostream>
+#+BEGIN_SRC java
+package com.example;
 
-int main() {
-        std::cout << "Hogehoge Hugahuga";
-        return 0;
+public class Main {
+  public static void main(String[] args) {
+    System.out.println("Hogehoge Hugahuga");
+  }
 }
 #+END_SRC
 #+END_EXAMPLE
 出力は
-#+BEGIN_SRC c++
-#include <iostream>
+#+BEGIN_SRC java
+package com.example;
 
-int main() {
-        std::cout << "Hogehoge Hugahuga";
-        return 0;
+public class Main {
+  public static void main(String[] args) {
+    System.out.println("Hogehoge Hugahuga");
+  }
 }
 #+END_SRC
 整形済みと同様に行番号を付加できます
 #+BEGIN_EXAMPLE
-#+BEGIN_SRC c++ -n
-#include <iostream>
+#+BEGIN_SRC java -n
+package com.example;
 
-int main() {
-        std::cout << "Hogehoge Hugahuga";
-        return 0;
+public class Main {
+  public static void main(String[] args) {
+    System.out.println("Hogehoge Hugahuga");
+  }
 }
 #+END_SRC
 #+END_EXAMPLE
 出力は
-#+BEGIN_SRC c++ -n
-#include <iostream>
+#+BEGIN_SRC java -n
+package com.example;
 
-int main() {
-        std::cout << "Hogehoge Hugahuga";
-        return 0;
+public class Main {
+  public static void main(String[] args) {
+    System.out.println("Hogehoge Hugahuga");
+  }
 }
 #+END_SRC
 **** リスト

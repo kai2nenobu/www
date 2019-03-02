@@ -36,5 +36,5 @@ paginate = 6
 
 [[menu.main]]
   Name = "Archives"
-  URL = "/blog/"
+  URL = "/post/"
   weight = -5

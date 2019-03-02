@@ -817,12 +817,12 @@ public class Main {
 #+BEGIN_EXAMPLE
 #+CAPTION: A Guided Tour of Emacs
 #+ATTR_HTML: :alt Emacs の起動画面 :title ヌーヌー :width 400
-[[http://www.gnu.org/software/emacs/tour/][http://www.gnu.org/software/emacs/tour/images/splash.png]]
+[[https://www.gnu.org/software/emacs/tour/][http://www.gnu.org/software/emacs/tour/images/splash.png]]
 #+END_EXAMPLE
 出力は \\
 #+CAPTION: A Guided Tour of Emacs
 #+ATTR_HTML: :alt Emacs の起動画面 :title ヌーヌー :width 400
-[[http://www.gnu.org/software/emacs/tour/][http://www.gnu.org/software/emacs/tour/images/splash.png]]
+[[https://www.gnu.org/software/emacs/tour/][https://www.gnu.org/software/emacs/tour/images/splash.png]]
 **** gist のソースコードを埋め込み
 Octopressはデフォルトでgistに対応している。（波括弧は全角になっているが、本来
 半角）

@@ -5,6 +5,224 @@
 :PROPERTIES:
 :EXPORT_HUGO_SECTION: post
 :END:
+** org-octopressで記事投稿テスト                             :Emacs:org_mode:
+:PROPERTIES:
+:EXPORT_FILE_NAME: 2013-12-15-org-octopress-test
+:EXPORT_DATE: 2013-12-15
+:EXPORT_HUGO_LASTMOD:
+:END:
+
+
+*** org-modeで記事を書く
+- [[http://quickhack.net/nom/blog/2013-05-01-org-octopress.html][Octopress の記事を org-mode で - Quickhack Diary]]
+を参考にしました。
+
+{{{more}}}
+*** テストテスト
+**** 整形済み
+単純な整形済みテキストは以下のように書く。（# は全角文字になってます）
+#+BEGIN_EXAMPLE
+＃+BEGIN_EXAMPLE
+$ echo hogehoge
+hogehoge
+＃+END_EXAMPLE
+#+END_EXAMPLE
+出力は
+#+BEGIN_EXAMPLE
+$ echo hogehoge
+hogehoge
+#+END_EXAMPLE
+-n オプションで行番号を付加できます。
+#+BEGIN_EXAMPLE
+＃+BEGIN_EXAMPLE -n
+一人目
+二人目
+三人目
+＃+END_EXAMPLE
+#+END_EXAMPLE
+出力は
+#+BEGIN_EXAMPLE -n
+一人目
+二人目
+三人目
+#+END_EXAMPLE
+css で行番号の部分はコピペできないようにしたけど、もっと見た目でコピーできない
+ということを伝えたい。
+**** コードブロック
+ハイライト付きコードブロック（C++ の場合）
+#+BEGIN_EXAMPLE
+#+BEGIN_SRC c++
+#include <iostream>
+
+int main() {
+        std::cout << "Hogehoge Hugahuga";
+        return 0;
+}
+#+END_SRC
+#+END_EXAMPLE
+出力は
+#+BEGIN_SRC c++
+#include <iostream>
+
+int main() {
+        std::cout << "Hogehoge Hugahuga";
+        return 0;
+}
+#+END_SRC
+整形済みと同様に行番号を付加できます
+#+BEGIN_EXAMPLE
+#+BEGIN_SRC c++ -n
+#include <iostream>
+
+int main() {
+        std::cout << "Hogehoge Hugahuga";
+        return 0;
+}
+#+END_SRC
+#+END_EXAMPLE
+出力は
+#+BEGIN_SRC c++ -n
+#include <iostream>
+
+int main() {
+        std::cout << "Hogehoge Hugahuga";
+        return 0;
+}
+#+END_SRC
+**** リスト
+#+BEGIN_EXAMPLE
+- hoge
+- huga
+- untra
+#+END_EXAMPLE
+出力は
+- hoge
+- huga
+- untra
+
+**** 数字付きリスト
+#+BEGIN_EXAMPLE
+1. hoge
+2. huga
+3. untra
+#+END_EXAMPLE
+出力は
+1. hoge
+2. huga
+3. untra
+
+**** マークアップ
+いろいろな記法で文字を装飾することができます。
+#+BEGIN_EXAMPLE
+*太字*, /斜体/, _下線_, +取り消し線+, =code=, ~verbatim~
+#+END_EXAMPLE
+出力は *太字*, /斜体/, _下線_, +取り消し線+, =code=, ~verbatim~ 。あれ、太字
+と斜体にならないな。
+
+ただしマークアップ記法の前後は半角スペースや半角コンマなどの区切り文字でないと
+マークアップされない。最後の2つの=code=や~verbatim~は等幅フォントで表示したい
+時や、文字通り出力したい場合などに便利。
+**** 表
+|--------+----------|
+| hoge   | ほげ     |
+|--------+----------|
+| huga   | ふが     |
+|--------+----------|
+| untara | うんたら |
+|--------+----------|
+
+**** 画像
+画像を表示したい場合には、単純に画像へのファイルのリンクを貼ればよい。
+#+BEGIN_EXAMPLE
+[[file:/images/google-map.jpg]]
+#+END_EXAMPLE
+出力は \\
+[[file:/images/google-map.jpg]]
+\\
+画像がローカルのファイルの場合、org2blog が自動的に画像をアップロードしてくれる。
+
+~#+ATTR_HTML~ で画像に属性を追加することができるので、インライン画像の表示幅
+なども調節できる。
+#+BEGIN_EXAMPLE
+#+CAPTION: 都庁付近の地図
+#+ATTR_HTML: :alt 都庁付近の地図 :title 都庁付近の地図 :width 320
+[[file:/images/google-map.jpg]]
+#+END_EXAMPLE
+出力は \\
+#+CAPTION: 都庁付近の地図
+#+ATTR_HTML: :alt 都庁付近の地図 :title 都庁付近の地図 :width 320
+[[file:/images/google-map.jpg]]
+
+リンク文字列付きでリンクすれば、画像へのリンクが貼られたテキストになる。
+#+BEGIN_EXAMPLE
+[[file:/images/google-map.jpg][ぐーぐるまっぷ]]
+#+END_EXAMPLE
+出力は [[file:/images/google-map.jpg][ぐーぐるまっぷ]]。
+
+次は Web 上の画像をインライン表示してみる。
+#+BEGIN_EXAMPLE
+#+ATTR_HTML: :alt Emacs の起動画面 :title ヌーヌー :width 400
+[[http://www.gnu.org/software/emacs/tour/images/splash.png]]
+#+END_EXAMPLE
+出力は \\
+#+ATTR_HTML: :alt Emacs の起動画面 :title ヌーヌー :width 400
+[[http://www.gnu.org/software/emacs/tour/images/splash.png]]
+
+リンク文字列のほうに画像の URL を書けば、画像をインライン表示させつつ画像をク
+リックして他の URL に飛ぶこともできる。
+#+BEGIN_EXAMPLE
+#+CAPTION: A Guided Tour of Emacs
+#+ATTR_HTML: :alt Emacs の起動画面 :title ヌーヌー :width 400
+[[http://www.gnu.org/software/emacs/tour/][http://www.gnu.org/software/emacs/tour/images/splash.png]]
+#+END_EXAMPLE
+出力は \\
+#+CAPTION: A Guided Tour of Emacs
+#+ATTR_HTML: :alt Emacs の起動画面 :title ヌーヌー :width 400
+[[http://www.gnu.org/software/emacs/tour/][http://www.gnu.org/software/emacs/tour/images/splash.png]]
+**** gist のソースコードを埋め込み
+Octopressはデフォルトでgistに対応している。（波括弧は全角になっているが、本来
+半角）
+#+BEGIN_EXAMPLE
+｛% gist gist_id [filename] %｝
+#+END_EXAMPLE
+と書くことでgistコードを埋め込むことができる。このような形になるように
+org-mode のマクロを定義しておく。
+#+BEGIN_SRC org
+#+MACRO: gist ｛% gist $1 $2 %｝
+#+END_SRC
+
+このマクロを定義した上で以下のように書くと、
+#+BEGIN_EXAMPLE
+｛｛｛gist(2988755,ThisIsTestOfGist.sh)｝｝｝
+#+END_EXAMPLE
+出力は
+
+# {{{gist(2988755, ThisIsTestOfGist.sh)}}}
+
+となる。あとはCSS次第か。
+**** twitter のツイートを埋め込み
+WordPress3.4 で twitter の埋込みに対応したらしい。独立した行に URL を書けばい
+いらしい。
+#+BEGIN_EXAMPLE
+https://twitter.com/kbkbkbkb1/status/217381492052082689
+#+END_EXAMPLE
+出力は \\
+https://twitter.com/kbkbkbkb1/status/217381492052082689 \\
+どうも org-mode の方が URL をリンクに変換してしまうので、うまくいかない模様。
+
+他の書き方もあるのでやってみる。この書き方だとオプションで幅や高さを決めること
+もできる。平文で2行目を書いてしまうと、やはり URL がリンクになってしまうので
+HTML ブロックで囲むのがよさそう。記号は一部大文字になっています。
+#+BEGIN_EXAMPLE
+＃+BEGIN_HTML
+［embed］https://twitter.com/kbkbkbkb1/status/217381492052082689［/embed］
+＃+END_HTML
+#+END_EXAMPLE
+出力は
+#+BEGIN_HTML
+[embed]https://twitter.com/kbkbkbkb1/status/217381492052082689[/embed]
+#+END_HTML
+
 ** define-minor-mode で定義されたマイナーモードの挙動                 :Emacs:
 :PROPERTIES:
 :EXPORT_FILE_NAME: 2013-02-10-minor-mode-behavior

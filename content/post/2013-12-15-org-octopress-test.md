@@ -205,12 +205,12 @@ public class Main {
 
 ```text
 #+ATTR_HTML: :alt Emacs の起動画面 :title ヌーヌー :width 400
-[[http://www.gnu.org/software/emacs/tour/images/splash.png]]
+[[https://www.gnu.org/software/emacs/tour/images/splash.png]]
 ```
 
 出力は <br />
 
-{{< figure src="http://www.gnu.org/software/emacs/tour/images/splash.png" alt="Emacs の起動画面" title="ヌーヌー" width="400" >}}
+{{< figure src="https://www.gnu.org/software/emacs/tour/images/splash.png" alt="Emacs の起動画面" title="ヌーヌー" width="400" >}}
 
 リンク文字列のほうに画像の URL を書けば、画像をインライン表示させつつ画像をク
 リックして他の URL に飛ぶこともできる。

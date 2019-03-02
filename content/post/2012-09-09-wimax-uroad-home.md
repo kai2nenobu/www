@@ -21,7 +21,7 @@ draft = false
 
 Mobile Cube の見た目はこんな感じです。
 
-{{< figure src="http://nwcs.co.jp/product/mobilecube/img/name.png" alt="Mobile Cube の外観図" title="Mobile Cube" width="640" link="http://nwcs.co.jp/product/mobilecube/index.html" >}}
+{{< figure src="https://nwcs.co.jp/product/mobilecube/img/name.png" alt="Mobile Cube の外観図" title="Mobile Cube" width="640" link="https://nwcs.co.jp/product/mobilecube/index.html" >}}
 
 -   重さ89g
 -   連続通信時間10時間
@@ -55,7 +55,7 @@ Mobile Cube の見た目はこんな感じです。
 ようかと思っていたのですが、[URoad-Home](http://www.shinseicorp.com/wimax/uroad-home/index.shtml) という非常に有能な端末が発売されていま
 した。
 
-{{< figure src="http://www.shinseicorp.com/wimax/uroad-home/img/gallery%5Fphoto02.jpg" alt="URoad-Home の外観図" title="URoad-Home" width="640" link="http://www.shinseicorp.com/wimax/uroad-home/gallery.shtml" >}}
+{{< figure src="https://news.mynavi.jp/article/20111212-uroad%5Fhome/images/001.jpg" alt="URoad-Home の外観図" title="URoad-Home" width="640" link="http://www.shinseicorp.com/wimax/uroad-home/gallery.shtml" >}}
 
 URoad-Home ははじめから自宅内で利用するように想定された非携帯用の WiMAX 端末で、
 有線 LAN ポートが2つあるのが今回の用途にぴったりです。この端末の特徴は

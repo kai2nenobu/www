@@ -642,7 +642,7 @@ MELPAに登録してあるので、 =M-x package-install guide-key= でインス
 きくなりすぎて正常に表示できないかもしれませんので注意してください。
 *** まとめ
 guide-keyの新機能を紹介しました。もし意見などありましたら
-twitter({{{twitter(kbkbkbkb1)}}})やgithub({{{github(kbkbkbkb1,guide-key)}}})な
+twitter({{{twitter(kai2nenobu)}}})やgithub({{{github(kai2nenobu,guide-key)}}})な
 どにお願いします。
 
 ** org-octopressで記事投稿テスト                             :Emacs:org_mode:
@@ -848,10 +848,10 @@ org-mode のマクロを定義しておく。
 WordPress3.4 で twitter の埋込みに対応したらしい。独立した行に URL を書けばい
 いらしい。
 #+BEGIN_EXAMPLE
-https://twitter.com/kbkbkbkb1/status/217381492052082689
+https://twitter.com/kai2nenobu/status/217381492052082689
 #+END_EXAMPLE
 出力は \\
-https://twitter.com/kbkbkbkb1/status/217381492052082689 \\
+https://twitter.com/kai2nenobu/status/217381492052082689 \\
 どうも org-mode の方が URL をリンクに変換してしまうので、うまくいかない模様。
 
 他の書き方もあるのでやってみる。この書き方だとオプションで幅や高さを決めること
@@ -859,12 +859,12 @@ https://twitter.com/kbkbkbkb1/status/217381492052082689 \\
 HTML ブロックで囲むのがよさそう。記号は一部大文字になっています。
 #+BEGIN_EXAMPLE
 ＃+BEGIN_HTML
-［embed］https://twitter.com/kbkbkbkb1/status/217381492052082689［/embed］
+［embed］https://twitter.com/kai2nenobu/status/217381492052082689［/embed］
 ＃+END_HTML
 #+END_EXAMPLE
 出力は
 #+BEGIN_HTML
-[embed]https://twitter.com/kbkbkbkb1/status/217381492052082689[/embed]
+[embed]https://twitter.com/kai2nenobu/status/217381492052082689[/embed]
 #+END_HTML
 
 ** define-minor-mode で定義されたマイナーモードの挙動                 :Emacs:
@@ -1118,7 +1118,7 @@ list-packages~ を実行してパッケージをリストアップし、 ~i~ で
 #+ATTR_HTML: :alt packageでguide-key.elをインストールする図 :title guide-key.elのインストール :width 640
 [[file:/images/guide-key-package-install.png]]
 
-package.el がない人は [[https://github.com/m2ym/popwin-el][m2ym/popwin-el]] と [[https://github.com/kbkbkbkb1/guide-key][kbkbkbkb1/guide-key]] から popwin.elと
+package.el がない人は [[https://github.com/m2ym/popwin-el][m2ym/popwin-el]] と [[https://github.com/kbkbkbkb1/guide-key][kai2nenobu/guide-key]] から popwin.elと
 guide-key.el を直接ダウンロードしてきて、適当に ~load-path~ が通っているところ
 に保存してください。
 *** 使い方

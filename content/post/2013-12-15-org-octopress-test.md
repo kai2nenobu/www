@@ -63,48 +63,52 @@ css で行番号の部分はコピペできないようにしたけど、もっ�
 ハイライト付きコードブロック（C++ の場合）
 
 ```text
-#+BEGIN_SRC c++
-#include <iostream>
+#+BEGIN_SRC java
+package com.example;
 
-int main() {
-        std::cout << "Hogehoge Hugahuga";
-        return 0;
+public class Main {
+  public static void main(String[] args) {
+    System.out.println("Hogehoge Hugahuga");
+  }
 }
 #+END_SRC
 ```
 
 出力は
 
-```c++
-#include <iostream>
+```java
+package com.example;
 
-int main() {
-	std::cout << "Hogehoge Hugahuga";
-	return 0;
+public class Main {
+  public static void main(String[] args) {
+    System.out.println("Hogehoge Hugahuga");
+  }
 }
 ```
 
 整形済みと同様に行番号を付加できます
 
 ```text
-#+BEGIN_SRC c++ -n
-#include <iostream>
+#+BEGIN_SRC java -n
+package com.example;
 
-int main() {
-        std::cout << "Hogehoge Hugahuga";
-        return 0;
+public class Main {
+  public static void main(String[] args) {
+    System.out.println("Hogehoge Hugahuga");
+  }
 }
 #+END_SRC
 ```
 
 出力は
 
-{{< highlight c++ "linenos=table, linenostart=1" >}}
-#include <iostream>
+{{< highlight java "linenos=table, linenostart=1" >}}
+package com.example;
 
-int main() {
-	std::cout << "Hogehoge Hugahuga";
-	return 0;
+public class Main {
+  public static void main(String[] args) {
+    System.out.println("Hogehoge Hugahuga");
+  }
 }
 {{< /highlight >}}
 

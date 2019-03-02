@@ -7,13 +7,290 @@
 :PROPERTIES:
 :EXPORT_HUGO_SECTION: post
 :END:
+** Emacs Lispのテスト、依存性管理、CI                            :Emacs:Test:
+:PROPERTIES:
+:EXPORT_FILE_NAME: 2014-02-23-emacs-cask
+:EXPORT_DATE: 2014-02-23
+:EXPORT_HUGO_LASTMOD:
+:END:
+
+現在開発中の[[https://github.com/kbkbkbkb1/guide-key][guide-key]]の機能がそれなりに増えてきたので、そろそろテストを書きた
+いなと思いました。そこでERTでユニットテストを書いて、Caskで依存関係を解決して、
+Travis CIでCIするところまでできたので紹介します。
+
+{{{more}}}
+
+*** ERTでユニットテスト
+[[http://www.emacswiki.org/emacs/ErtTestLibrary][ERT]]はEmacs Lisp Regression Testingの略で、Emacs Lispのテスティングツールです。
+JUnitなどと同様にユニットテストが書けます。
+**** ディレクトリ構成
+- [[http://d.hatena.ne.jp/pogin/20130617/1371488876][EmacsLispで最小構成(っぽい)テストをする方法 - プログラムとかののblog]]
+が丁度良くテストの最小構成を紹介していたので、真似して以下のようなディレクトリ
+構成にしました。
+#+BEGIN_EXAMPLE
+guide-key/
+├── guide-key.el
+└── test/
+    └── guide-key-test.el
+#+END_EXAMPLE
+参考にしたリポジトリも、概ねリポジトリ直下に ~test~ などのテスト専用のディレ
+クトリを配置しているのが多かったです。
+**** テストを書いて実行
+テストの書き方の詳細は[[http://www.gnu.org/software/emacs/manual/ert.html][マニュアル]]に譲りますが、 ~ert-deftest~ でテストケースを
+定義し、 ~should~ でアサーションすることができます。とりあえず最近追加した関数
+のテストを書いてみました。
+#+BEGIN_SRC emacs-lisp
+(require 'ert)
+(require 'guide-key)
+(eval-when-compile
+  (require 'cl))
+
+(ert-deftest guide-key-test/get-highlight-face ()
+  "Test of `guide-key/get-highlight-face'"
+  (let ((guide-key/highlight-command-regexp
+         '("rectangle"
+           ("register" . font-lock-type-face)
+           ("bookmark" . font-lock-warning-face)
+           ))
+        (fixtures
+         '(("Prefix Command" . guide-key/prefix-command-face)
+           ("string-rectangle" . guide-key/highlight-command-face)
+           ("jump-to-register" . font-lock-type-face)
+           ("bookmark-jump" . font-lock-warning-face)
+           ("copy-rectangle-to-register" . guide-key/highlight-command-face)
+           ("<NOTEXIST>" . nil)
+           ))
+        actual)
+    (loop for (input . expected) in fixtures
+          do
+          (setq actual (guide-key/get-highlight-face input))
+          (should (eq actual expected)))
+    ))
+#+END_SRC
+
+まだテストの前処理、後処理やテストケースの構造化をする方法がよくわからないの
+で、識者の意見がほしいです。
+
+テストの実行するにはEmacs内から ~ert~ コマンドを実行するか、以下のようにコマン
+ドラインからEmacsのバッチを呼び出します。
+#+BEGIN_EXAMPLE
+$ emacs -batch -l test/guide-key-test.el -f ert-run-tests-batch-and-exit
+#+END_EXAMPLE
+
+しかしguide-keyは[[https://github.com/m2ym/popwin-el][popwin]]に依存しているため、このコマンドだけではテストが実行で
+きません。popwinのあるところに ~load-path~ を通す必要があります。これを手動で
+やるのは大変なので、Caskという依存関係を解決してくれるツールを利用することにし
+ました。
+*** Caskで依存関係管理
+[[https://github.com/cask/cask][Cask]]はEmacsの依存関係管理ツールです。標準添付のpackage.elもライブラリの依存関
+係を考慮して必要ライブラリを一括でダウンロードすることはできます。しかし 個人
+の設定のために =~/.emacs.d= にダウンロードする前提なので、ライブラリの開発で
+利用するのには向きません。
+
+CaskはRubyでいうGemfileのように、Caskファイルに依存しているライブラリを記述す
+ることで、一括ダウンロードや ~PATH~ 、 ~load-path~ の調整をしてくれます。
+**** インストール
+#+BEGIN_EXAMPLE
+$ curl -fsSkL https://raw.github.com/cask/cask/master/go | python
+$ export PATH="$HOME/.cask/bin:$PATH"
+#+END_EXAMPLE
+だけです。
+
+ちなみにWindowsで試してみたら、うまくインストール出来ませんでした。Cygwinなの
+が悪いのでしょうか。
+**** 依存関係の解決
+リポジトリの直下の ~Cask~ ファイルに、依存しているライブラリを記述します。例え
+ばこのような感じです。
+#+BEGIN_SRC emacs-lisp
+(source gnu)
+(source melpa)
+(source marmalade)
+
+(package-file "guide-key.el")
+
+(development
+ (depends-on "ert")
+ (depends-on "popwin"))
+#+END_SRC
+~source~ がライブラリを参照する場所、 ~package-file~ が開発しているライブラリ、
+~depends-on~ が依存しているライブラリです。詳しくは[[http://cask.github.io/usage/][Usage]]を見てください。
+guide-key自身が依存しているのはpopwinだけですが、Emacs23でテストする際にertが
+必要になるのでertも依存ライブラリとしています。
+
+実際に依存ライブラリをダウンロードするには、コマンドラインで ~cask~ あるいは
+~cask install~ します。
+#+BEGIN_EXAMPLE
+$ cask install
+Contacting host: marmalade-repo.org:80
+Saving file /home/kai/.emacs.d/my-lisp/guide-key/.cask/24.3.1/elpa/archives/marmalade/archive-contents...
+（中略）
+Wrote /home/kai/.emacs.d/my-lisp/guide-key/.cask/24.3.1/elpa/popwin-20130329.435/popwin.elc
+Done (Total of 2 files compiled, 1 skipped)
+$ ls .cask/24.3.1/elpa/
+archives  popwin-20130329.435
+#+END_EXAMPLE
+これで ~.cask~ ディレクトリが作成され、依存ライブラリがダウンロードされます。
+
+この状態で
+#+BEGIN_EXAMPLE
+$ cask exec command
+#+END_EXAMPLE
+することで、 ~.cask~ 以下にある依存ライブラリを ~PATH~ や ~load-path~ に追加し
+た状態で ~command~ を実行することができます。したがって以下のコマンドでテスト
+を実行することができます。
+#+BEGIN_EXAMPLE
+$ cask exec emacs -batch -L . -l test/guide-key-test.el -f ert-run-tests-batch-and-exit
+Running 1 tests (2014-02-23 12:56:40+0900)
+   passed  1/1  guide-key-test/get-highlight-face
+
+Ran 1 tests, 1 results as expected (2014-02-23 12:56:40+0900)
+#+END_EXAMPLE
+無事テストが成功しました。
+
+Caskを使えばpopwinへの ~load-path~ を考える必要がないのが楽です。ただしCaskは
+リポジトリ直下（guide-key.elがあるディレクトリ）を ~load-path~ に追加してくれ
+ないようなので、 ~-L .~ で手動で追加しています。あまり美しい方法では無いですね。
+参考にしたリポジトリでは、 ~test/test-init.el~ などのテスト初期化ファイルを作っ
+て、そこで開発ライブラリ（guide-key.el）をロードするような構成になっているもの
+もありました。
+**** 環境変数で環境を切り替える
+環境変数 ~EMACS~ を設定することで、Caskで利用するEmacsを切り替えることができま
+す。上の ~emacs~ はバージョンが24でしたが、それとは別にバージョン23の
+~emacs23~ がインストールされている場合、以下のように ~cask~ を環境変数を変更し
+て実行します。
+#+BEGIN_EXAMPLE
+$ export EMACS=emacs23
+$ cask install
+Contacting host: marmalade-repo.org:80
+Saving file /home/kai/.emacs.d/my-lisp/guide-key/.cask/23.3.1/elpa/archives/marmalade/archive-contents...
+（中略）
+Wrote /home/kai/.emacs.d/my-lisp/guide-key/.cask/23.3.1/elpa/popwin-20130329.435/popwin.elc
+Done (Total of 2 files compiled, 1 skipped)
+$ ls .cask/23.3.1/elpa
+archives  ert-0  popwin-20130329.435
+#+END_EXAMPLE
+
+あとは先ほどと同様に
+#+BEGIN_EXAMPLE
+$ cask exec ${EMACS} -batch -L . -l test/guide-key-test.el -f ert-run-tests-batch-and-exit
+Running 1 tests (2014-02-23 12:56:40+0900)
+   passed  1/1  guide-key-test/get-highlight-face
+
+Ran 1 tests, 1 results as expected (2014-02-23 12:56:40+0900)
+#+END_EXAMPLE
+でテストが回せます。popwinやertへの ~load-path~ を考える必要がなく、同じコマン
+ドなのがいいですね。
+*** Travis CIでCI
+テストが書けたのでCIできるように[[http://docs.travis-ci.com/user/getting-started/][Travis CI]]を利用します。
+**** Makefileで自動化
+~make~ コマンド一発でテストを回すために、Makefileを作ります。
+#+BEGIN_SRC makefile-gmake
+EMACS ?= emacs
+CASK ?= cask
+
+all:
+	${MAKE} clean
+	${MAKE} test
+	${MAKE} compile
+	${MAKE} test
+	${MAKE} clean
+
+compile:
+	# Fail if byte-compile outpus warnings
+	${CASK} exec ${EMACS} -batch -Q -L . -eval \
+	"(progn \
+	(setq byte-compile-error-on-warn t) \
+	(batch-byte-compile))" guide-key.el
+test:
+	${CASK} exec ${EMACS} -Q -batch -L . -l test/guide-key-test.el -f ert-run-tests-batch-and-exit
+clean:
+	rm -f guide-key.elc
+
+.PHONY: all compile test clean
+#+END_SRC
+簡単なMakefileですが ~make~ コマンドでバイトコンパイルせずにテストと、バイトコ
+ンパイルしてテストを実行します。バイトコンパイルで警告が出ると失敗させているの
+は厳しすぎるかもしれませんが、当面これで行くことにしました。
+**** Travisの設定
+Travisのビルド設定をtravis.ymlに書きます。
+#+BEGIN_SRC yaml
+language: emacs-lisp
+env:
+  - EMACS=emacs23
+  - EMACS=emacs24
+  - EMACS=emacs-snapshot
+matrix:
+  allow_failures:
+    - env: EMACS=emacs-snapshot
+before_install:
+  # Install Emacs
+  - sudo add-apt-repository -y ppa:cassou/emacs
+  - sudo apt-get update -qq
+  - sudo apt-get install -qq $EMACS
+  # Install Cask
+  - curl -fsSkL --max-time 10 --retry 10 --retry-delay 10
+        https://raw.github.com/cask/cask/master/go | python
+  - export PATH="$HOME/.cask/bin:$PATH"
+  - cask
+script:
+  make
+#+END_SRC
+~before_install~ で必要なEmacsとCaskをインストールして、テストを回します。テス
+ト環境は ~emacs23~ と ~emacs24~ と ~emacs-snapshot~ の3つとし、環境変数
+~EMACS~ を設定することで自動的に ~cask~ の動作が変わるようになります。
+
+実際にビルドした結果が以下のようになります。
+
+#+ATTR_HTML: :title Travis CIへGo :alt guide-keyのTravis CIでのビルド結果
+[[https://travis-ci.org/kbkbkbkb1/guide-key][file:/images/guide-key-travis-ci.png]]
+
+~emacs-snapshot~ がなぜか失敗しているので、やむを得ず ~allow_failures~ に入れ
+てます。
+*** まとめ
+Emacs Lispのテスト、依存性管理、CIする方法を紹介しました。最終的なディレクトリ
+構成は以下のようになりました。
+#+BEGIN_EXAMPLE
+guide-key/
+├── .cask/          # 依存ライブラリを格納
+│   ├── 23.3.1/      # Emacsのバージョン別に保持
+│   ├── 24.3.1/
+│   └── ...
+├── .travis.yml     # Travis CIの設定
+├── Cask            # 依存ライブラリを記述
+├── Makefile        # テストの自動化
+├── guide-key.el
+└── test/
+    └── guide-key-test.el
+#+END_EXAMPLE
+
+あとはテストケースが全然不十分なので、テストケースを充実させていくだけです。
+guide-keyは副作用がある関数ばかりなので、テストが書きにくそうです。できるだけ
+副作用のない粗結合の構成になるようにリファクタリングしたいと思います。
+
+さらにテストを便利にするためのライブラリとして、[[https://github.com/rejeep/ert-runner.el][rejeep/ert-runner.el]]や
+[[https://github.com/ecukes/ecukes][ecukes/ecukes]]があります。ert-runnerはJUnitでいうテストスイートのようなもので、
+テスト名やタグによって実行するテストケースを制御するライブラリです。ecukesは
+cucumberのように振る舞い駆動開発するためのライブラリのようです。
+
+これらもおいおい導入していければと思います。
+**** 参考にしたリポジトリ
+- Caskを作っている[[https://github.com/rejeep][rejeep (Johan Andersson)]]さんのリポジトリ
+  - [[https://github.com/cask/cask][cask/cask]]
+  - [[https://github.com/ecukes/ecukes][ecukes/ecukes]]
+  - [[https://github.com/rejeep/ert-runner.el][rejeep/ert-runner.el]]
+  - [[https://github.com/rejeep/f.el][rejeep/f.el]]
+- テストを作る際のテンプレート
+  - [[https://github.com/pogin503/emacs-test-sample][pogin503/emacs-test-sample]] ERTでテストする最小構成。
+  - [[https://github.com/lewang/ert-test-skeleton][lewang/ert-test-skeleton]] Travis CIを利用するテンプレート（Caskなし）。
+  - [[https://github.com/tkf/emacs-plugin-template][tkf/emacs-plugin-template]] CaskとTravis CIを利用したテンプレート。Caskの旧
+    名のCartonが使われているが、Caskでもほぼそのまま利用できる。
+
 ** guide-keyの新機能棚卸                                    :Emacs:guide_key:
 :PROPERTIES:
 :EXPORT_FILE_NAME: 2013-12-22-emacs-advent-calendar-2013-22
 :EXPORT_DATE: 2013-12-22
 :EXPORT_HUGO_LASTMOD:
 :END:
-
 
 この記事は[[http://qiita.com/advent-calendar/2013/dot-emacs][.emacs Advent Calendar 2013]]の22日目の記事です。
 [[./2012-12-03-emacs-advent-calendar-2012-03.org][去年のアドベントカレンダー]]で[[https://github.com/kbkbkbkb1/guide-key/blob/master/README.ja.org][guide-key]]という、キーバインドを自動表示する自作ラ

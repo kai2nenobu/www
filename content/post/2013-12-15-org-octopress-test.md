@@ -218,12 +218,12 @@ public class Main {
 ```text
 #+CAPTION: A Guided Tour of Emacs
 #+ATTR_HTML: :alt Emacs の起動画面 :title ヌーヌー :width 400
-[[http://www.gnu.org/software/emacs/tour/][http://www.gnu.org/software/emacs/tour/images/splash.png]]
+[[https://www.gnu.org/software/emacs/tour/][http://www.gnu.org/software/emacs/tour/images/splash.png]]
 ```
 
 出力は <br />
 
-{{< figure src="http://www.gnu.org/software/emacs/tour/images/splash.png" alt="Emacs の起動画面" caption="Figure 2: A Guided Tour of Emacs" title="ヌーヌー" width="400" link="http://www.gnu.org/software/emacs/tour/" >}}
+{{< figure src="https://www.gnu.org/software/emacs/tour/images/splash.png" alt="Emacs の起動画面" caption="Figure 2: A Guided Tour of Emacs" title="ヌーヌー" width="400" link="https://www.gnu.org/software/emacs/tour/" >}}
 
 
 ### gist のソースコードを埋め込み {#gist-のソースコードを埋め込み}

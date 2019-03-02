@@ -7,6 +7,59 @@
 :PROPERTIES:
 :EXPORT_HUGO_SECTION: post
 :END:
+** Java8をemacs-quickrunでコンパイルする                         :Emacs:Java:
+:PROPERTIES:
+:EXPORT_FILE_NAME: 2014-03-22-emacs-java-quickrun
+:EXPORT_DATE: 2014-03-22
+:EXPORT_HUGO_LASTMOD:
+:END:
+
+EmacsのquickrunでJavaを動かすというニッチな人向けです。
+
+{{{more}}}
+*** Java8を入れてみた
+[[https://blogs.oracle.com/java/entry/java_se_8_is_now][Java SE 8]]が先日リリースされたので試しに使ってみることにしました。普段のコンパ
+イラはJava7のままにしたかったので、Java8の ~javac~ と ~java~ は ~javac8~ と
+~java8~ というシンボリックリンクを作って利用することにしました。
+
+これをEmacsの[[https://github.com/syohex/emacs-quickrun][quickrun]]でコンパイル＆実行したいので、マニュアル通り
+#+BEGIN_SRC emacs-lisp
+(quickrun-add-command  "java8"
+                       '((:command . "java8")
+                         (:compile-only . "javac8 -Werror %o %s")
+                         (:exec    . ("javac8 %o %s" "%c %N %a"))
+                         (:cmdopt . "-encoding UTF-8")
+                         (:remove  . ("%n.class"))
+                         (:description . "Compile Java8 file and execute")))
+#+END_SRC
+として、Java8用の "java8" というコマンドを追加しました。
+
+これでquickrunを実行してみると
+#+BEGIN_EXAMPLE
+qr_65243Cj.java:4: エラー: クラスHogeはpublicであり、ファイルHoge.javaで宣言する必要があります
+public class Hoge {
+       ^
+エラー1個
+#+END_EXAMPLE
+とか怒られました。そういえばquickrunは一時ファイルを作ってそれをコンパイルする
+はずなので、ファイル名とクラス名が一致しなくて怒られる。
+
+でも既存のJavaであればquickrunを利用できるはずだけどな？ と思ってquickrunのソー
+スを読むとJavaとGoだけは一時ファイルを利用しないらしい。
+#+BEGIN_SRC emacs-lisp
+(defsubst quickrun/use-tempfile-p (cmd-key)
+  (not (or (member cmd-key '("java" "go/go")) quickrun/compile-only-flag)))
+#+END_SRC
+
+なのでこの関数をアドバイスすることにした。
+#+BEGIN_SRC emacs-lisp
+(defadvice quickrun/use-tempfile-p (after java8 activate)
+  "Java8でも一時ファイルを作らないようアドバイス"
+  (when (string= (ad-get-arg 0) "java8")
+    (setq ad-return-value nil)))
+#+END_SRC
+これで無事コンパイル＆実行できました。無理やりだけどいいことにしよう。
+
 ** Emacs Lispのテスト、依存性管理、CI                            :Emacs:Test:
 :PROPERTIES:
 :EXPORT_FILE_NAME: 2014-02-23-emacs-cask

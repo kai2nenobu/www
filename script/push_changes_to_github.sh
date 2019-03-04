@@ -10,7 +10,7 @@ clean_up() {
 ## 変更があればコミットする
 git diff
 git add content
-git -c user.name="Travis CI" -c user.email="travis@travis-ci.org" commit -m "[ci skip] Update documents generated from ${TRAVIS_COMMIT}"
+git -c user.name="Travis CI" -c user.email="travis@travis-ci.org" commit -m "[ci skip] Update documents generated from ${TRAVIS_COMMIT:0:7}"
 
 ## デプロイキーを復号する
 openssl aes-256-cbc -K $encrypted_c546895bd2a4_key -iv $encrypted_c546895bd2a4_iv -in .travis/www_deploy_key_by_travis.enc -out "$GITHUB_DEPLOY_KEY" -d

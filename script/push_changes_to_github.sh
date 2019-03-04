@@ -1,6 +1,6 @@
 #!/bin/sh
 
-declare -r GITHUB_DEPLOY_KEY="$(mktemp -u $HOME/.ssh/XXXXXXX)"
+GITHUB_DEPLOY_KEY="$(mktemp -u $HOME/.ssh/XXXXXXX)"
 trap 'clean_up' EXIT
 
 clean_up() {

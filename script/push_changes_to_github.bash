@@ -26,7 +26,7 @@ script_echo() {
 
 ## contentに変更があるか確認する
 doing git diff -- content
-if [ "$(git diff --name-only -- content) | wc -l" -gt 0 ]; then
+if [ "$(git diff --name-only -- content | wc -l)" -gt 0 ]; then
   ## 変更をコミットする
   git add content
   doing git -c user.name="Travis CI" -c user.email="travis@travis-ci.org" commit -m "[ci skip] Update documents generated from ${TRAVIS_COMMIT:0:7}"

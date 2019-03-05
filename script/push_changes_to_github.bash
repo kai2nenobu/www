@@ -12,13 +12,13 @@ clean_up() {
 ### CIなどで、なにをやってるかをわかりやすくするために使う。
 ### **秘密情報を含む引数を渡さないこと！**
 doing() {
-  echo "[${SCRIPT_NAME}]" '$' "$@"
+  echo "[${SCRIPT_NAME}]\$" "$@"
   "$@"
 }
 
-### doingの実際には
+### doingのコマンドを実行しないバージョン
 script_echo() {
-  echo "[${SCRIPT_NAME}]" '$' "$@"
+  echo "[${SCRIPT_NAME}]\$" "$@"
 }
 
 ## 変更があればコミットする

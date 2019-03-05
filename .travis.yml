@@ -14,5 +14,5 @@ script:
 after_success:
   - |
     if [ "$TRAVIS_EVENT_TYPE" != pull_request ]; then
-      ./script/push_changes_to_github.sh
+      ./script/push_changes_to_github.bash
     fi

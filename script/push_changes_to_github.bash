@@ -21,4 +21,4 @@ git remote -v
 
 ## デプロイキーを使ってpushする
 export GIT_SSH_COMMAND="ssh -i ${GITHUB_DEPLOY_KEY}"
-git push origin "HEAD:${TRAVIS_BRANCH}" >/dev/null 2>&1
+git push origin "HEAD:${TRAVIS_BRANCH}"

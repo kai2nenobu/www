@@ -5,6 +5,10 @@ theme = "hugo-octopress"
 
 disableAliases = true
 
+# Syntax Highlight
+pygmentsUseClasses = true
+pygmentsCodeFences = true
+
 # Number of blog posts in each pagination page
 paginate = 6
 
@@ -22,6 +26,8 @@ paginate = 6
 
   # Switch to true to enable RSS icon link
   rss = true
+
+  customCSS = ["/css/style.css"]
 
   # Social network icons
   github = "https://github.com/kai2nenobu/"

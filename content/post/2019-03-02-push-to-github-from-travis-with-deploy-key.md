@@ -88,7 +88,9 @@ Commit all changes to your .travis.yml.
 > git commit -m "暗号化した秘密鍵を追加する"
 ```
 
-```sh
+GitHubにプッシュ。
+
+```console
 ## pushにsshを使う
 $ git config url."git@github.com".pushInsteadOf "https://github.com/"
 $ export GIT_SSH_COMMAND="ssh -i file"
@@ -101,3 +103,4 @@ $ openssl aes-256-cbc -K $encrypted_c546895bd2a4_key -iv $encrypted_c546895bd2a4
 -   [Encrypting Files - Travis CI](https://docs.travis-ci.com/user/encrypting-files/)
 -   [Travis CIからgh-pagesへデプロイする設定 via SSH/git push | Web Scratch](https://efcl.info/2016/09/27/deploy-from-travis-ci-to-gh-pages/)
 -   [Git: force to use SSH URL instead of HTTPS for github.com](https://discuss.bitrise.io/t/git-force-to-use-ssh-url-instead-of-https-for-github-com/4384)
+-   [OctopressからHugoに乗り換えた](https://shogo82148.github.io/blog/2018/04/10/migrate-to-hugo/)
